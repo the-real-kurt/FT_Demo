@@ -1,4 +1,4 @@
-package test.interview.Demo;
+package test.interview.demo;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

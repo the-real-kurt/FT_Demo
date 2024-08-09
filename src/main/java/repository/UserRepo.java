@@ -1,6 +1,0 @@
-
-
-pubic class UserRepo {
-
-
-}
