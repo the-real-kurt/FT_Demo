@@ -10,25 +10,21 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.Instant;
 import java.time.LocalDateTime;
-import java.time.ZoneOffset;
+import java.time.ZoneId;
 import java.time.ZonedDateTime;
-import java.util.Date;
-import java.util.List;
-import java.util.Locale;
-import java.util.Map;
-import java.util.UUID;
+import java.util.*;
 
 public class FakeDB {
+    private FakeDB() {}
 
    /*
         SETUP DATA
    */
 
-    static SimpleDateFormat formatter = new SimpleDateFormat("dd-MMM-yyyy", Locale.ENGLISH);
-
     private static Date getOldYearDate() {
         Date date = null;
         try {
+            SimpleDateFormat formatter = new SimpleDateFormat("dd-MMM-yyyy", Locale.ENGLISH);
             String dateInString = "7-Jun-2023";
             date = formatter.parse(dateInString);
         } catch(ParseException e) {
@@ -39,7 +35,7 @@ public class FakeDB {
 
     private static Date getThisYearDate() {
         LocalDateTime localDateTime = LocalDateTime.now();
-        ZonedDateTime zonedDateTime = localDateTime.atZone(ZoneOffset.systemDefault());
+        ZonedDateTime zonedDateTime = localDateTime.atZone(ZoneId.systemDefault());
         Instant instant = zonedDateTime.toInstant();
         return Date.from(instant);
     }
@@ -91,7 +87,7 @@ public class FakeDB {
 
     private static final BillingRecord br6 = BillingRecord.builder()
             .price(BigDecimal.valueOf(3.99))
-            .id(UUID.fromString("22222222-1111-1111-1111-111111111114"))
+            .id(UUID.fromString("22222222-1111-1111-1111-111111111116"))
             .createdTime(getThisYearDate())
             .user(user2)
             .build();
@@ -143,5 +139,7 @@ public class FakeDB {
     public static final List<BillingRecord> allBillingRecords = List.of(
             br1, br2, br3, br4, br5, br6, br7, br8
     );
-
+    public static final List<Invoice> allInvoices = List.of(
+            inv1, inv2, inv3
+    );
 }
