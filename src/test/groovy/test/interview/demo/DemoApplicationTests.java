@@ -1,6 +1,5 @@
 package test.interview.demo;
 
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
@@ -57,11 +56,5 @@ class DemoApplicationTests {
 	@Test
 	void getBillingRecordsForNonExistentUser() throws Exception {
 		mockMvc.perform(get("/billingRecords/-1")).andExpect(status().isNotFound());
-	}
-
-	@Test
-	@Disabled
-	void failme() throws Exception {
-		mockMvc.perform(get("/invoice/"+ID2)).andExpect(status().isOk()).andExpect( jsonPath("$.id").value("foo") );
 	}
 }
